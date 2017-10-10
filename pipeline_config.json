@@ -1,0 +1,10 @@
+{
+    'fastqc_report': {
+	'exc': {
+	    'filepath': '`which fastqc`',
+	    'version': '`fastqc --version`'
+	}
+	'time': 1,
+	'ram': 5
+    }
+	    

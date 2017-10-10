@@ -1,0 +1,43 @@
+'''
+This is an example of a basic one-to-one result. It takes
+a previously computed result (in this case paired end reads with 
+macroscopic DNA removed) and computes another result.
+
+The only thing that needs to be specified here are the snakemake rules
+that produce the necessary output files. Each module (this is a module)
+needs to correspond to a result-definition given in 
+pipeline_definitions.json. This definition tells ModuleUltra what outputs
+it should expect.
+'''
+
+
+rule fastqc_report:
+	input:
+            # these file patterns are automatically generated when
+            # the snakemake is preprocessed. The definitions used
+            # to generate can be found in pipeline_definition.json.
+	    reads1 = config['raw_short_read_dna']['read1'] 
+            reads2 = config['raw_short_read_dna']['read2']
+	output:
+	    zip1 = config['fastqc_report']['zip1']
+	    html1 = config['fastqc_report']['html1']            
+	    zip2 = config['fastqc_report']['zip2']
+	    html2 = config['fastqc_report']['html2']            
+	version: config['fastqc_report']['exc']['version']
+	params:
+	    fastqc = config['fastqc_report']['exc']['filepath'],
+	resources:
+            time=int(config['fastqc_report']['time']),
+	    n_gb_ram=int(config['fastqc_report']['ram'])
+	run:
+            base1 = input.reads1.split('.')[0]
+            base2 = input.reads2.split('.')[0]
+	    cmd = (
+                '{params.fastq} {input.reads1} {input.reads2} && '
+                'mv '+base1+'_fastqc.zip {zip1} ; '
+                'mv '+base2+'_fastqc.zip {zip2} ; '
+                'mv '+base1+'_fastqc.html {html1} ; '
+                'mv '+base2+'_fastqc.html {html2} ; '                
+            )
+            shell(cmd)
+
