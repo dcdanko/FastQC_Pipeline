@@ -24,7 +24,7 @@
 	    "FILES": {
 		"read1": "gz_fastq",
 		"read2": "gz_fastq"
-	    },
+	    }
 	},
 	{
 	    "NAME": "fastqc_report",
@@ -35,8 +35,8 @@
 		"zip2": "zip_fastqc",
 		"html2": "html_fastqc"
 		
-	    },
-	},
+	    }
+	}
     ]
 }
 	    
