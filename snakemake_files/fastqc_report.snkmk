@@ -16,12 +16,12 @@ rule fastqc_report:
             # these file patterns are automatically generated when
             # the snakemake is preprocessed. The definitions used
             # to generate can be found in pipeline_definition.json.
-	    reads1 = config['raw_short_read_dna']['read1'] 
+	    reads1 = config['raw_short_read_dna']['read1'],
             reads2 = config['raw_short_read_dna']['read2']
 	output:
-	    zip1 = config['fastqc_report']['zip1']
-	    html1 = config['fastqc_report']['html1']            
-	    zip2 = config['fastqc_report']['zip2']
+	    zip1 = config['fastqc_report']['zip1'],
+	    html1 = config['fastqc_report']['html1'],            
+	    zip2 = config['fastqc_report']['zip2'],
 	    html2 = config['fastqc_report']['html2']            
 	version: config['fastqc_report']['exc']['version']
 	params:
