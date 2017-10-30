@@ -16,7 +16,7 @@ rule fastqc_report:
             # these file patterns are automatically generated when
             # the snakemake is preprocessed. The definitions used
             # to generate can be found in pipeline_definition.json.
-	    reads1 = getOriginResult('raw_short_read_dna', 'read1')
+	    reads1 = getOriginResult('raw_short_read_dna', 'read1'),
             reads2 = getOriginResult('raw_short_read_dna', 'read2')
 	output:
 	    zip1 = config['fastqc_report']['zip1'],
