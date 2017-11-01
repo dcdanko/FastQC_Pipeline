@@ -1,14 +1,3 @@
-'''
-This is an example of a basic one-to-one result. It takes
-a previously computed result (in this case paired end reads with 
-macroscopic DNA removed) and computes another result.
-
-The only thing that needs to be specified here are the snakemake rules
-that produce the necessary output files. Each module (this is a module)
-needs to correspond to a result-definition given in 
-pipeline_definitions.json. This definition tells ModuleUltra what outputs
-it should expect.
-'''
 
 
 rule fastqc_report:
@@ -33,11 +22,11 @@ rule fastqc_report:
             base1 = input.reads1.split('.')[0]
             base2 = input.reads2.split('.')[0]
 	    cmd = (
-                '{params.fastq} {input.reads1} {input.reads2} && '
-                'mv '+base1+'_fastqc.zip {zip1} ; '
-                'mv '+base2+'_fastqc.zip {zip2} ; '
-                'mv '+base1+'_fastqc.html {html1} ; '
-                'mv '+base2+'_fastqc.html {html2} ; '                
+                '{params.fastqc} {input.reads1} {input.reads2} && '
+                'mv '+base1+'_fastqc.zip {output.zip1} ; '
+                'mv '+base2+'_fastqc.zip {output.zip2} ; '
+                'mv '+base1+'_fastqc.html {output.html1} ; '
+                'mv '+base2+'_fastqc.html {output.html2} ; '                
             )
             shell(cmd)
 

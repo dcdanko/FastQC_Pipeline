@@ -6,6 +6,13 @@
 	},
 	"time": 1,
 	"ram": 5
+    },
+    "multiqc_report": {
+	"exc": {
+	    "filepath": "/pbtech_mounts/homes039/dcd3001/ve34/bin/multiqc",
+	    "version" : "/pbtech_mounts/homes039/dcd3001/ve34/bin/multiqc --version"
+	},
+	"zip_ext": ".fastqc.zip"
     }
 }
 	    

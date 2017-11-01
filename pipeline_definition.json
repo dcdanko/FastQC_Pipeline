@@ -16,7 +16,13 @@
     "FILE_TYPES": [
 	{ "name": "gz_fastq", "ext": "fastq.gz"},
 	{ "name": "zip_fastqc", "ext": "fastqc.zip"},
-	{ "name": "html_fastqc", "ext": "fastqc.html"}	
+	{ "name": "html_fastqc", "ext": "fastqc.html"},
+
+	{ "name": "multiqc_html", "ext": "multiqc_report.html"},
+	{ "name": "multiqc_fastqc", "ext": "multiqc_fastqc.txt"},
+	{ "name": "multiqc_stats", "ext": "multiqc_general_stats.txt"},
+	{ "name": "multiqc_sources", "ext": "multiqc_sources.txt"}
+	
     ],
     "RESULT_TYPES": [
 	{
@@ -36,7 +42,19 @@
 		"html2": "html_fastqc"
 		
 	    }
+	},
+	{
+	    "NAME" : "multiqc_report",
+	    "DEPENDENCIES": ["fastqc_report"],
+	    "LEVEL": "GROUP",
+	    "FILES": {
+		"html": "multiqc_html",
+		"fastqc": "multiqc_fastqc",
+		"gstats": "multiqc_stats",
+		"sources": "multiqc_sources"
+	    }
 	}
+		
     ]
 }
 	    
