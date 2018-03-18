@@ -6,7 +6,7 @@ rule multiqc_report:
     input:
         # The expandGroup function is imported from moduleUltra (automatically)
         # It gets every file matching the pattern from the group being processed
-        expandGroup( config['fastqc_report']['zip1'], config['fastqc_report']['zip2'])
+        expandGroup(config['fastqc_report']['zip1'], config['fastqc_report']['zip2'])
     output:
         html = config['multiqc_report']['html'],
         fastqc = config['multiqc_report']['fastqc'],
@@ -29,7 +29,8 @@ rule multiqc_report:
         cmd = ('{params.exc} '
                '--cl_config "sp: {{fastqc/zip: {{fn: \'*{params.ext}\'}}}}" '
                '-o {params.group_name}_multiqc ')
-        cmd += tempdir + ' ; '
+        #cmd += tempdir + ' ; '
+        cmd += ' . ; '
         
         bhtml = '{}_multiqc/multiqc_report.html'.format(params.group_name)
         bfastqc = '{}_multiqc/multiqc_data/multiqc_fastqc.txt'.format(params.group_name)
