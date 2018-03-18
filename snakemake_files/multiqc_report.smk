@@ -22,10 +22,10 @@ rule multiqc_report:
         n_gb_ram=10
     run:
 
-        tempdir = tempfile.mkdtemp()
+        tempdir = tempfile.mkdtemp(dir='.')
         for inp in input:
-            dst = os.path.join( tempdir, os.path.basename(inp))
-            os.symlink( os.path.abspath(inp), dst)
+            dst = os.path.join(tempdir, os.path.basename(inp))
+            os.symlink(os.path.abspath(inp), dst)
         cmd = ('{params.exc} '
                '--cl_config "sp: {{fastqc/zip: {{fn: \'*{params.ext}\'}}}}" '
                '-o {params.group_name}_multiqc ')
